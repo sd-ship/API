@@ -31,7 +31,7 @@ app.get('/api/songs', (req, res) => {
           try {
             info = JSON.parse(fs.readFileSync(infoPath, 'utf-8'));
           } catch (e) {
-            console.warn(Invalid info.json in ${folder});
+            console.warn(`Invalid info.json in ${folder}`);
           }
         }
 
@@ -39,11 +39,11 @@ app.get('/api/songs', (req, res) => {
         const files = fs.readdirSync(folderPath);
         const audio = files
           .filter(file => file.endsWith('.mp3') || file.endsWith('.m4a'))
-          .map(file => /songs/${folder}/${file});
+          .map(file => `/songs/${folder}/${file}`);
 
         // Get cover file (.jpg, .jpeg, .png)
         const cover = files.find(f => f.startsWith('cover') && /\.(jpg|jpeg|png)$/.test(f));
-        const coverUrl = cover ? /songs/${folder}/${cover} : null;
+        const coverUrl = cover ? `/songs/${folder}/${cover}` : null;
 
         return {
           folder,
@@ -59,5 +59,5 @@ app.get('/api/songs', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(Server running on http://localhost:${PORT});
+  console.log(`Server running on http://localhost:${PORT}`);
 });
