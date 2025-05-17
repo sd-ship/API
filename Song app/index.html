@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music</title>
+    <link rel="stylesheet" href="css/22style.css">
+    <link rel="stylesheet" href="css/22utility.css">
+
+</head>
+
+<body>
+    <div class="container flex bg-black">
+        <div class="left">
+            <div class="home bg-grey rounded m-1 p-1">
+                <div class="log"><img class="invert" src="img/logo.svg" alt="logo" width="100px"></div>
+                <div class="close">
+                    <img src="img/cross.svg" alt="">
+                </div>
+                <ul>
+                    <li><img class="invert" src="img/home.svg" alt="home">Home</li>
+                    <li><img class="invert" src="img/search.svg" alt="library">Search</li>
+                </ul>
+            </div>
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <img class="invert" src="img/playlist.svg" alt="" class="src">
+                    <h2>Your Library</h2>
+                </div>
+                <div class="songList">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div class="footer">
+                    <p><b>ihdnas Developer</b></p>
+                    <div style="cursor: pointer;">
+                        <a href="mailto:dhiraj7birajdar@gmail.com">Contact me</a> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="right bg-grey rounded m-1 p-1">
+            <div class="header">
+                <div class="nav">
+                    <img class="hamburger" src="img/hamburger.svg" alt="">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#e3e3e3">
+                        <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#e3e3e3">
+                        <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+                    </svg>
+                </div>
+                <div class="buttons">
+                    <button class="signupbtn">Signup</button>
+                    <button class="loginbtn">Log in</button>
+                </div>
+            </div>
+            <div class="spotifyPlaylist">
+                <h1>Spotify Playlist</h1>
+                <div class="cardContainer">
+
+
+
+
+                  
+                </div>
+                <div class="playbar">
+                    <div class="seekbar">
+                        <div class="circle">
+
+                        </div>
+                    </div>
+                    <div class="abovebar">
+                        <div class="songinfo"></div>
+                        <div class="songbutton">
+                            <img id="pre" src="img/previous.svg" alt="">
+                            <img id="play" src="img/play.svg" alt="">
+                            <img id="next" src="img/next.svg" alt="">
+                        </div>
+                        <div class="songtime">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
