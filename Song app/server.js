@@ -7,14 +7,10 @@ const app = express();
 const PORT = process.env.PORT || 5500;
 
 app.use(cors());
-
-// Serve static frontend files (optional, if you're running frontend from same server)
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Serve song assets like audio, cover images, and info.json
 app.use('/songs', express.static(path.join(__dirname, 'songs')));
 
-// API: list all folders (albums)
+// API: list all folders (albums) and include audio files
 app.get('/api/songs', (req, res) => {
   const songsDir = path.join(__dirname, 'songs');
 
@@ -30,19 +26,31 @@ app.get('/api/songs', (req, res) => {
         const infoPath = path.join(folderPath, 'info.json');
         let info = { title: folder, description: '' };
 
+        // Parse info.json
         if (fs.existsSync(infoPath)) {
           try {
             info = JSON.parse(fs.readFileSync(infoPath, 'utf-8'));
           } catch (e) {
-            console.warn(`Invalid info.json in ${folder}`);
+            console.warn(Invalid info.json in ${folder});
           }
         }
+
+        // Get list of audio files
+        const files = fs.readdirSync(folderPath);
+        const audio = files
+          .filter(file => file.endsWith('.mp3') || file.endsWith('.m4a'))
+          .map(file => /songs/${folder}/${file});
+
+        // Get cover file (.jpg, .jpeg, .png)
+        const cover = files.find(f => f.startsWith('cover') && /\.(jpg|jpeg|png)$/.test(f));
+        const coverUrl = cover ? /songs/${folder}/${cover} : null;
 
         return {
           folder,
           title: info.title,
           description: info.description,
-          cover: `/songs/${folder}/cover.jpg` // You may need to add logic to support .jpeg/.png
+          cover: coverUrl,
+          audio,
         };
       });
 
@@ -50,7 +58,6 @@ app.get('/api/songs', (req, res) => {
   });
 });
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(Server running on http://localhost:${PORT});
 });
